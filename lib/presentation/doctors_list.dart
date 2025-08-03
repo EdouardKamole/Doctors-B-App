@@ -13,7 +13,7 @@ class DoctorsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: getRelativeHeight(0.35),
       child: ListView.builder(
         itemCount: Data.doctorsList.length,
@@ -28,7 +28,7 @@ class DoctorsList extends StatelessWidget {
           final cardWidth = getRelativeWidth(0.50);
           return Row(
             children: [
-              Container(
+              SizedBox(
                 width: cardWidth,
                 child: Stack(
                   children: [
@@ -97,7 +97,7 @@ class DoctorsList extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                                 width: cardWidth,
                                 height: getRelativeHeight(0.19),
                                 child: Image.asset(doctor.image)),

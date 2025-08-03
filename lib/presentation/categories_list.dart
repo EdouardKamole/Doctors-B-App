@@ -78,7 +78,7 @@ class CategoriesList extends StatelessWidget {
                             height: getRelativeHeight(0.005),
                           ),
                           Text(
-                            category.doctorsNumber.toString() + " doctors",
+                            "${category.doctorsNumber} doctors",
                             style: TextStyle(
                               color: Colors.black.withOpacity(0.48),
                               fontSize: getRelativeWidth(0.03),

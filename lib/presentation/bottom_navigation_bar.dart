@@ -10,7 +10,7 @@ class BottomNavigation extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onItemPressed;
   const BottomNavigation({
-     Key? key,
+    super.key,
     required this.itemIcons,
     required this.centerIcon,
     required this.selectedIndex,
@@ -19,7 +19,7 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: getRelativeHeight(0.1),
       child: Stack(
         children: [
@@ -111,12 +111,12 @@ class BottomNavigation extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 25,
-                        offset: Offset(0, 5),
+                        offset: const Offset(0, 5),
                         color: kPrimaryDarkColor.withOpacity(0.75),
                       )
                     ],
-                    borderRadius: BorderRadius.all(Radius.circular(18)),
-                    gradient: LinearGradient(
+                    borderRadius: const BorderRadius.all(Radius.circular(18)),
+                    gradient: const LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [

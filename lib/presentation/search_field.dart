@@ -10,7 +10,7 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: getRelativeWidth(0.88),
       child: Center(
         child: TextField(
@@ -36,7 +36,7 @@ class SearchField extends StatelessWidget {
                   width: getRelativeWidth(0.26),
                   height: getRelativeHeight(0.01),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [Color(0xffFBA473), Color(0xffFA7A30)]),
