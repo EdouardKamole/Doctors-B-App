@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
+import '../size_config.dart';
+import '../size_mixin.dart';
 
-import '../size_confige.dart';
-
-class DoctorAppBar extends StatelessWidget {
-  const DoctorAppBar({
-    Key? key,
-  }) : super(key: key);
+class DoctorAppBar extends StatelessWidget with SizeMixin {
+  const DoctorAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: getRelativeWidth(
-          0.04,
-        ),
+        horizontal: getRelativeWidth(0.04),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -26,23 +22,15 @@ class DoctorAppBar extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w800,
-                  fontSize: getRelativeWidth(
-                    0.09,
-                  ),
+                  fontSize: getRelativeWidth(0.09),
                 ),
               ),
-              SizedBox(
-                height: getRelativeHeight(
-                  0.003,
-                ),
-              ),
+              SizedBox(height: getRelativeHeight(0.003)),
               Text(
                 "Find A Doctor & Specialist easily",
                 style: TextStyle(
                   color: Colors.blueGrey[400],
-                  fontSize: getRelativeWidth(
-                    0.036,
-                  ),
+                  fontSize: getRelativeWidth(0.036),
                 ),
               ),
             ],
@@ -58,15 +46,11 @@ class DoctorAppBar extends StatelessWidget {
                 )
               ],
               color: const Color(0xffA295FD),
-              borderRadius: BorderRadius.circular(
-                5,
-              ),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: Image.asset(
-                "assets/images/person.png",
-              ),
+              child: Image.asset("assets/images/person.png"),
             ),
           )
         ],

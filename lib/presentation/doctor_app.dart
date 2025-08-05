@@ -1,24 +1,28 @@
-// ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:doctor_app/constants.dart';
+import 'package:doctor_app/presentation/appbar.dart';
 import 'package:doctor_app/presentation/banner.dart';
 import 'package:doctor_app/presentation/bottom_navigation_bar.dart';
+import 'package:doctor_app/presentation/categories_list.dart';
 import 'package:doctor_app/presentation/doctors_list.dart';
 import 'package:doctor_app/presentation/search_field.dart';
-import 'package:doctor_app/size_confige.dart';
-import 'appbar.dart';
-import 'categories_list.dart';
+import 'package:doctor_app/size_config.dart';
+import 'package:doctor_app/size_mixin.dart';
 
 class DoctorScreen extends StatefulWidget {
+  const DoctorScreen({super.key});
+
   @override
-  _DoctorScreenState createState() => _DoctorScreenState();
+  State<DoctorScreen> createState() => _DoctorScreenState();
 }
 
-class _DoctorScreenState extends State<DoctorScreen> {
+class _DoctorScreenState extends State<DoctorScreen> with SizeMixin {
   int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: SafeArea(
@@ -26,15 +30,15 @@ class _DoctorScreenState extends State<DoctorScreen> {
           child: Column(
             children: [
               SizedBox(height: getRelativeHeight(0.025)),
-              const DoctorAppBar(),
+              const DoctorBanner(), // Added const
               SizedBox(height: getRelativeHeight(0.015)),
-              const DoctorBanner(),
+              const DoctorAppBar(), // Added const - this was the main issue
               SizedBox(height: getRelativeHeight(0.005)),
-              SearchField(),
+              const SearchField(),
               SizedBox(height: getRelativeHeight(0.025)),
               const CategoriesList(),
               SizedBox(height: getRelativeHeight(0.01)),
-              const DoctorsList()
+              const DoctorsList(),
             ],
           ),
         ),

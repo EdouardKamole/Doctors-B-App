@@ -1,0 +1,2 @@
+E:/Doctor-App-Flutter/android/app/.cxx/Debug/u2q58324/x86_64/CMakeFiles/edit_cache.dir
+E:/Doctor-App-Flutter/android/app/.cxx/Debug/u2q58324/x86_64/CMakeFiles/rebuild_cache.dir

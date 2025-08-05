@@ -1,146 +1,113 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import '../size_config.dart';
 
-import '../constants.dart';
-import '../size_confige.dart';
-import 'dart:math' as math;
+class DoctorBanner extends StatefulWidget {
+  const DoctorBanner({super.key});
 
-class BottomNavigation extends StatelessWidget {
-  final List<IconData> itemIcons;
-  final IconData centerIcon;
-  final int selectedIndex;
-  final Function(int) onItemPressed;
-  const BottomNavigation({
-    super.key,
-    required this.itemIcons,
-    required this.centerIcon,
-    required this.selectedIndex,
-    required this.onItemPressed,
-  }) : assert(itemIcons.length != 3, "Item must equal 4");
+  @override
+  State<DoctorBanner> createState() => _DoctorBannerState();
+}
+
+class _DoctorBannerState extends State<DoctorBanner> {
+  final List<String> _images = [
+    'assets/images/splash_1.png',
+    'assets/images/splash_2.png',
+    'assets/images/splash_3.png',
+  ];
+
+  int _currentImageIndex = 0;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Change image every 2 seconds
+    _timer = Timer.periodic(const Duration(seconds: 2), (Timer timer) {
+      setState(() {
+        _currentImageIndex = (_currentImageIndex + 1) % _images.length;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel(); // Cancel timer to avoid memory leaks
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: getRelativeHeight(0.1),
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: getRelativeHeight(0.07),
-              color: Colors.white,
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: getRelativeWidth(0.1)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              onItemPressed(0);
-                            },
-                            child: Icon(
-                              itemIcons[0],
-                              color: selectedIndex == 0
-                                  ? kPrimaryDarkColor
-                                  : kLightTextColor,
-                              size: getRelativeWidth(0.07),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              onItemPressed(1);
-                            },
-                            child: Icon(
-                              itemIcons[1],
-                              color: selectedIndex == 1
-                                  ? kPrimaryDarkColor
-                                  : kLightTextColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Spacer(flex: 3),
-                    Expanded(
-                      flex: 2,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              onItemPressed(2);
-                            },
-                            child: Icon(
-                              itemIcons[2],
-                              color: selectedIndex == 2
-                                  ? kPrimaryDarkColor
-                                  : kLightTextColor,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              onItemPressed(3);
-                            },
-                            child: Icon(
-                              itemIcons[3],
-                              color: selectedIndex == 3
-                                  ? kPrimaryDarkColor
-                                  : kLightTextColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Positioned.fill(
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Transform.rotate(
-                angle: -math.pi / 4,
-                child: Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 25,
-                        offset: const Offset(0, 5),
-                        color: kPrimaryDarkColor.withOpacity(0.75),
-                      )
-                    ],
-                    borderRadius: const BorderRadius.all(Radius.circular(18)),
-                    gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        kPrimarylightColor,
-                        kPrimaryDarkColor,
-                      ],
+    return Container(
+      width: SizeConfig.getRelativeWidth(0.94),
+      height: SizeConfig.getRelativeHeight(0.22),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xffFBA473), Color(0xffFA7A30)],
+        ),
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: SizeConfig.getRelativeWidth(0.03),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Looking for\nSpecialist Doctors?",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: SizeConfig.getRelativeWidth(0.055),
                     ),
                   ),
-                  height: getRelativeWidth(0.135),
-                  width: getRelativeWidth(0.135),
-                  child: Center(
-                      child: Transform.rotate(
-                    angle: math.pi / 4,
-                    child: Icon(
-                      centerIcon,
-                      color: Colors.white,
-                      size: getRelativeWidth(0.07),
+                  SizedBox(height: SizeConfig.getRelativeHeight(0.02)),
+                  Text(
+                    "Schedule an appointment with\nour top doctors.",
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.8),
+                      fontSize: SizeConfig.getRelativeWidth(0.033),
                     ),
-                  )),
+                  ),
+                  SizedBox(width: SizeConfig.getRelativeWidth(0.03)),
+                  Container(
+                    padding: EdgeInsets.all(SizeConfig.getRelativeWidth(0.012)),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                      size: SizeConfig.getRelativeWidth(0.038),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                height: SizeConfig.getRelativeWidth(0.12),
+                width: SizeConfig.getRelativeWidth(0.12),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(_images[_currentImageIndex]),
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
