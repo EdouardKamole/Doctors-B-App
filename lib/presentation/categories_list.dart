@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:doctor_app/data/data.dart';
 import 'package:doctor_app/constants.dart';
-import 'package:doctor_app/size_config.dart';
+import '../size_config.dart';
 
 class CategoriesList extends StatelessWidget {
   const CategoriesList({super.key});

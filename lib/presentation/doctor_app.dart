@@ -30,7 +30,7 @@ class _DoctorScreenState extends State<DoctorScreen> with SizeMixin {
           child: Column(
             children: [
               SizedBox(height: getRelativeHeight(0.025)),
-              const DoctorBanner(), // Added const
+              const DoctorBanner(),
               SizedBox(height: getRelativeHeight(0.015)),
               const DoctorAppBar(), // Added const - this was the main issue
               SizedBox(height: getRelativeHeight(0.005)),
