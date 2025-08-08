@@ -32,7 +32,7 @@ class _DoctorScreenState extends State<DoctorScreen> with SizeMixin {
               SizedBox(height: getRelativeHeight(0.025)),
               const DoctorBanner(),
               SizedBox(height: getRelativeHeight(0.015)),
-              const DoctorAppBar(), // Added const - this was the main issue
+              const DoctorAppBar(),
               SizedBox(height: getRelativeHeight(0.005)),
               const SearchField(),
               SizedBox(height: getRelativeHeight(0.025)),
@@ -44,6 +44,7 @@ class _DoctorScreenState extends State<DoctorScreen> with SizeMixin {
         ),
       ),
       bottomNavigationBar: BottomNavigation(
+        // Using the actual class name from bottom_navigation_bar.dart
         selectedIndex: _selectedIndex,
         onItemPressed: (index) {
           setState(() {
